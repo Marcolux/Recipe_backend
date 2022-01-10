@@ -9,27 +9,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING, allowNull: false,
-        validate: {
-          notNull: true
-        }
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       email: {
-        type: Sequelize.STRING, allowNull: false,
-        validate: {
-          isEmail: true,
-          notNull: true
-        }, 
-        unique: {
-          args: true,
-          msg: 'Email adress already in use!'
-        }     
+        type: Sequelize.STRING,
+        allowNull: false, 
+        unique: true,
       }, 
       password: {
-        type: Sequelize.STRING, allowNull: false,
-        validate: {
-          notNull: true
-        }
+        type: Sequelize.STRING,
+        allowNull: false
       },
     createdAt: {
       allowNull: false,
