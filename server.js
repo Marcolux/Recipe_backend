@@ -9,10 +9,15 @@ app.use(express.json())
 
 
 // Routes
-// userRoutes
+
+// user Routes
 
 const userRoute = require('./routes/userRoutes')
 app.use('/user', userRoute)
+
+//recipe Routes
+const recipeRoute = require('./routes/recipeRoutes')
+app.use('/recipe', recipeRoute)
 
 
 app.listen(3001, ()=>{

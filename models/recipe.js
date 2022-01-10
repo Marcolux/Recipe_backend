@@ -11,13 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.recipe.belongsTo(models.user)
     }
   };
   recipe.init({
     apiId: DataTypes.INTEGER,
     ingredients: DataTypes.STRING,
     instructions: DataTypes.STRING,
-    picture: DataTypes.STRING
+    picture: DataTypes.STRING,
+    name:DataTypes.STRING,
+    userId:DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'recipe',
