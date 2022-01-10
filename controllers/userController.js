@@ -1,6 +1,9 @@
 const models = require('../models')
 const userController = {}
 
+
+//  function to create a user from body in frontend
+
 userController.createUser = async (req, res) => {
     try{
         const newUser = await models.user.create({
@@ -14,6 +17,7 @@ userController.createUser = async (req, res) => {
     }
 }
 
+//  function to create a login from body in frontend
 
 userController.login = async (req, res) => {
     try{
