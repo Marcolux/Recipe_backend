@@ -19,6 +19,11 @@ app.use('/user', userRoute)
 const recipeRoute = require('./routes/recipeRoutes')
 app.use('/recipe', recipeRoute)
 
+//category Routes
+
+const categoryRoute = require('./routes/categoryRoutes')
+app.use('/category', categoryRoute)
+
 
 app.listen(3001, ()=>{
     routesReport.print()
