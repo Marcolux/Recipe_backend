@@ -13,7 +13,7 @@ categoryController.createToUser = async (req, res) => {
             }
         })
         const categoryUser = await user.createCategory({
-            name: req.body.name
+            name: req.body.categoryName
         })
         res.json({categoryUser})
 
