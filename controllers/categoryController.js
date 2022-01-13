@@ -65,8 +65,9 @@ categoryController.getOneCategory = async (req,res)=>{
 // CREATE THE ASSOCIATIONS BETWEEN THE CATEGORY AND THE RECIPES:
 
 categoryController.recipeInCategory = async (req,res)=>{
+    
     try{
-       
+        
         const category = await models.category.findOne({
             where:{
                 id:req.params.categoryId
@@ -82,7 +83,7 @@ categoryController.recipeInCategory = async (req,res)=>{
     }
     catch(err){
         res.json(err)
-        console.log(`can't find that category`)
+        
     }
 }
 
@@ -93,7 +94,8 @@ categoryController.allRecipeInCategory = async (req,res)=>{
     
         const category = await models.category.findOne({
             where:{
-                id:req.params.categoryId
+                id:req.params.categoryId,
+                userId:req.params.userId
             }
         })
         const recipiesFromCategory= await category.getRecipes()
