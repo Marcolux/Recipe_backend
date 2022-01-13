@@ -6,6 +6,7 @@ const recipeController = {}
 
  recipeController.createRecipeToUser = async (req, res) => {
     
+     console.log(req.body)
     try{
         const user = await models.user.findOne({
             where:{
@@ -18,16 +19,18 @@ const recipeController = {}
             ingredients: req.body.ingredients,
             instructions: req.body.instructions,
             picture: req.body.picture,
-            name: req.body.name
+            name: req.body.name,
+            diets: req.body.diets
         })
         res.json({recipeUser})
+        
 
 
     }
 
     catch(err){
     res.json(err)
-    console.log(`can't create recipe`)
+    console.log(err)
     }
 }
 
