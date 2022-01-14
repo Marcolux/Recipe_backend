@@ -24,8 +24,8 @@ app.use('/recipe', recipeRoute)
 const categoryRoute = require('./routes/categoryRoutes')
 app.use('/category', categoryRoute)
 
-// const PORT =process.env.PORT || 3001
-app.listen(3001, ()=>{
-    // console.log(`server is listening on ${PORT}`)
-    routesReport.print()
+const PORT =process.env.PORT || 3001
+app.listen(PORT, ()=>{
+    console.log(`server is listening on ${PORT}`)
+    // routesReport.print()
 })
