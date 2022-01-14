@@ -100,6 +100,7 @@ categoryController.allRecipeInCategory = async (req,res)=>{
         })
         const recipiesFromCategory= await category.getRecipes()
         res.json(recipiesFromCategory)
+        console.log(recipiesFromCategory)
     }
     catch(err){
         res.json(err)
