@@ -6,7 +6,6 @@ const recipeController = {}
 
  recipeController.createRecipeToUser = async (req, res) => {
     
-     console.log(req.body)
     try{
         const user = await models.user.findOne({
             where:{
@@ -30,7 +29,6 @@ const recipeController = {}
 
     catch(err){
     res.json(err)
-    console.log(err)
     }
 }
 
@@ -49,7 +47,6 @@ recipeController.getAllRecipes = async (req,res)=>{
     }
     catch(err){
         res.json(err)
-        console.log(`can't find the recipes`)
     }
 }
 // GET 1 RECIPE FROM PARAM ID :
@@ -66,7 +63,6 @@ recipeController.getOneRecipe = async (req,res)=>{
     }
     catch(err){
         res.json(err)
-        console.log(`can't find the recipe`)
     }
 }
 
@@ -107,7 +103,6 @@ recipeController.deleteRecipe = async(req,res)=>{
         await recipe.destroy() 
 
         res.json(recipe)
-        console.log(recipe,'deleted')
     }   
     catch(err){
         res.json(err)

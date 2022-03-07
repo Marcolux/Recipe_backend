@@ -1,3 +1,4 @@
+const { errorMonitor } = require('pg/lib/query')
 const models = require('../models')
 const userController = {}
 
@@ -26,9 +27,9 @@ userController.login = async (req, res) => {
         })
         if(user.password === req.body.password) {
             res.json({user})
-        } 
+        }else{ res.json({err})}
     }catch (err) {
-        alert(err,'user password or email incorrect')
+        res.json({err})
     }
 }
 
