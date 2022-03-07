@@ -16,13 +16,10 @@ categoryController.createToUser = async (req, res) => {
             name: req.body.categoryName
         })
         res.json({categoryUser})
-
-
     }
 
     catch(err){
     res.json(err)
-    console.log(`can't create category`)
     }
 }
 // GET ALL THE CATEGORIES ASSOCIATED TO ONE USER
@@ -40,7 +37,6 @@ categoryController.getAllCategories = async (req,res)=>{
     }
     catch(err){
         res.json(err)
-        console.log(`can't find the categories`)
     }
 }
 
@@ -58,7 +54,6 @@ categoryController.getOneCategory = async (req,res)=>{
     }
     catch(err){
         res.json(err)
-        console.log(`can't find that category`)
     }
 }
 
@@ -100,11 +95,9 @@ categoryController.allRecipeInCategory = async (req,res)=>{
         })
         const recipiesFromCategory= await category.getRecipes()
         res.json(recipiesFromCategory)
-        console.log(recipiesFromCategory)
     }
     catch(err){
         res.json(err)
-        console.log(`can't find all the recipe for that category`)
     }
 }
 
