@@ -1,19 +1,15 @@
 const models = require('../models')
 const recipeController = {}
 
-
-//creating a recipe from the info (req.body) passed by the frontend:
-
- recipeController.createRecipeToUser = async (req, res) => {
-    
-    try{
+//Creating a recipe from the info (req.body) passed by the frontend:
+recipeController.createRecipeToUser = async (req, res) => {
+    try {
         const user = await models.user.findOne({
             where:{
                 id:req.params.userId
             }
         })
         const recipeUser = await user.createRecipe({
-
             apiId: req.body.apiId,
             ingredients: req.body.ingredients,
             instructions: req.body.instructions,
@@ -22,54 +18,46 @@ const recipeController = {}
             diets: req.body.diets
         })
         res.json({recipeUser})
-        
 
-
-    }
-
-    catch(err){
-    res.json(err)
+    } catch(err) {
+        res.json(err)
     }
 }
 
 // GET ALL THE RECIPES 
-
 recipeController.getAllRecipes = async (req,res)=>{
-    try{
+    try {
         const user = await models.user.findOne({
             where:{
                 id:req.params.userId
             }
         })
-
         const recipes = await user.getRecipes()
         res.json(recipes)
-    }
-    catch(err){
+
+    } catch(err) {
         res.json(err)
     }
 }
-// GET 1 RECIPE FROM PARAM ID :
 
+// GET 1 RECIPE FROM PARAM ID :
 recipeController.getOneRecipe = async (req,res)=>{
-    try{
-      
+    try {
         const recipe = await models.recipe.findOne({
             where:{
                 id:req.params.recipeId
             }
         })
         res.json(recipe)
-    }
-    catch(err){
+
+    } catch(err) {
         res.json(err)
     }
 }
 
 // MODIFY ONE RECIPE AFTER IDENTIFING IT:
-
 recipeController.modifyRecipe = async(req,res)=>{
-    try{
+    try {
         const recipe = await models.recipe.findOne({
             where:{
                 id:req.params.recipeId
@@ -81,32 +69,27 @@ recipeController.modifyRecipe = async(req,res)=>{
             instructions: req.body.instructions,
             picture: req.body.picture
         })
-
         res.json(updateRecipe)
-    }
-    catch(err){
+
+    } catch(err) {
         res.json(err)
     }
-
 }
 
 // DELETE A RECIPE :
-
-
 recipeController.deleteRecipe = async(req,res)=>{
-    try{
+    try {
         const recipe = await models.recipe.findOne({
             where:{
                 id: req.params.recipeId
             }
         })
         await recipe.destroy() 
-
         res.json(recipe)
-    }   
-    catch(err){
+        
+    } catch(err) {
         res.json(err)
     } 
 } 
- module.exports = recipeController
 
+module.exports = recipeController

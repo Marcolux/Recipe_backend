@@ -3,10 +3,8 @@ const categoryController = {}
 
 
 // CREATE A CATEGORY FOR USER
-
-categoryController.createToUser = async (req, res) => {
-    
-    try{
+categoryController.createToUser = async (req, res) => { 
+    try {
         const user = await models.user.findOne({
             where:{
                 id:req.params.userId
@@ -16,53 +14,47 @@ categoryController.createToUser = async (req, res) => {
             name: req.body.categoryName
         })
         res.json({categoryUser})
-    }
 
-    catch(err){
-    res.json(err)
+    } catch(err) {
+        res.json(err)
     }
 }
-// GET ALL THE CATEGORIES ASSOCIATED TO ONE USER
 
+// GET ALL THE CATEGORIES ASSOCIATED TO ONE USER
 categoryController.getAllCategories = async (req,res)=>{
-    try{
+    try {
         const user = await models.user.findOne({
             where:{
                 id:req.params.userId
             }
         })
-
         const categories = await user.getCategories()
         res.json(categories)
-    }
-    catch(err){
+
+    } catch(err) {
         res.json(err)
     }
 }
 
 // GET ONE SPECIFIC CATEGORY :
-
 categoryController.getOneCategory = async (req,res)=>{
-    try{
-        
+    try {      
         const category = await models.category.findOne({
             where:{
                 id:req.params.categoryId
             }
         })
         res.json(category)
-    }
-    catch(err){
+
+    } catch(err) {
         res.json(err)
     }
 }
 
 // CREATE THE ASSOCIATIONS BETWEEN THE CATEGORY AND THE RECIPES:
-
 categoryController.recipeInCategory = async (req,res)=>{
     
-    try{
-        
+    try {     
         const category = await models.category.findOne({
             where:{
                 id:req.params.categoryId
@@ -75,37 +67,32 @@ categoryController.recipeInCategory = async (req,res)=>{
         })
         const addRecipeToCategory = await category.addRecipes(recipe)
         res.json(addRecipeToCategory)
-    }
-    catch(err){
+
+    } catch(err) {
         res.json(err)
-        
     }
 }
 
 // GET ALL THE RECIPES ASSOCIATED TO A SPECIFIC CATEGORY:
-
 categoryController.allRecipeInCategory = async (req,res)=>{
-    try{
-    
+    try {
         const category = await models.category.findOne({
             where:{
                 id:req.params.categoryId,
                 userId:req.params.userId
             }
         })
-        const recipiesFromCategory= await category.getRecipes()
+        const recipiesFromCategory = await category.getRecipes()
         res.json(recipiesFromCategory)
-    }
-    catch(err){
+
+    } catch(err) {
         res.json(err)
     }
 }
 
-//REMOVE A RECIPE FROM A CATEGORY:
-
+// REMOVE A RECIPE FROM A CATEGORY:
 categoryController.removeRecipeInCategory = async (req,res)=>{
-    try{
-    
+    try {
         const category = await models.category.findOne({
             where:{
                 id:req.params.categoryId
@@ -117,20 +104,17 @@ categoryController.removeRecipeInCategory = async (req,res)=>{
             }
         })
         await category.removeRecipe(recipe)
-
         res.json(recipe)
-    }
-    catch(err){
+
+    } catch(err) {
         res.json(err)
     }
 }
 
 
 // COMPLETELY REMOVE A CATEGORY AND THE ASSOCIATIONS FOR THAT SPECIFIC CATEGORY IN THE JOIN TABLE :
-
-categoryController.removeCategory = async (req,res)=>{
-    
-    try{
+categoryController.removeCategory = async (req,res) => {
+    try {
         const category = await models.category.findOne({
             where:{
                 id:req.params.categoryId
@@ -143,10 +127,10 @@ categoryController.removeCategory = async (req,res)=>{
         })
             
         await category.destroy()
-            res.json(category)
-        }
-    catch(err){
+        res.json(category)
+
+    } catch(err) {
         res.json(err)
-        }
+    }
 }
-module.exports =categoryController
+module.exports = categoryController
