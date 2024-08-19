@@ -1,6 +1,5 @@
 const express = require('express');
 const categoryRoutes = express.Router()
-
 const categoryController = require('../controllers/categoryController')
 
 categoryRoutes.post('/:userId',categoryController.createToUser)

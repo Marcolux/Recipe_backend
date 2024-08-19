@@ -1,6 +1,5 @@
 const express = require('express');
 const recipeRoutes = express.Router()
-
 const recipeController = require('../controllers/recipeController')
 
 recipeRoutes.post('/:userId',recipeController.createRecipeToUser)
