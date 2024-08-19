@@ -4,28 +4,28 @@ const app = express()
 const routesReport = require('rowdy-logger').begin(app)
 
 app.use(require('morgan')('tiny'))
-app.use(require('cors')({ origin: 'http://localhost:3000' }));
-// app.use(require('cors')())
+app.use(require('cors')())
 app.use(express.json())
 
 
-// Routes
+// ===== Routes ===== \\
 
-app.get('/test', (req, res) => {
-    res.send('Server is working!');
-})
-
-// User Routes
+// ===== User ==>
 const userRoute = require('./routes/userRoutes')
 app.use('/user', userRoute)
 
-// Recipe Routes
+// ===== Recipe ==>
 const recipeRoute = require('./routes/recipeRoutes')
 app.use('/recipe', recipeRoute)
 
-// Category Routes
+// ===== Category ==>
 const categoryRoute = require('./routes/categoryRoutes')
 app.use('/category', categoryRoute)
+
+// ===== Port test ==>
+app.get('/test', (req, res) => {
+    res.send('Server is working!');
+})
 
 const PORT = process.env.PORT || 3002
 app.listen(PORT, ()=>{

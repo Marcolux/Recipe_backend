@@ -1,8 +1,7 @@
 const models = require('../models')
 const categoryController = {}
 
-
-// CREATE A CATEGORY FOR USER
+// ===== POST 1 category per user ===== \\
 categoryController.createToUser = async (req, res) => { 
     try {
         const user = await models.user.findOne({
@@ -20,8 +19,8 @@ categoryController.createToUser = async (req, res) => {
     }
 }
 
-// GET ALL THE CATEGORIES ASSOCIATED TO ONE USER
-categoryController.getAllCategories = async (req,res)=>{
+// ===== GET all the categories associated to a specific user ===== \\
+categoryController.getAllCategories = async (req,res) => {
     try {
         const user = await models.user.findOne({
             where:{
@@ -36,8 +35,8 @@ categoryController.getAllCategories = async (req,res)=>{
     }
 }
 
-// GET ONE SPECIFIC CATEGORY :
-categoryController.getOneCategory = async (req,res)=>{
+// ===== GET 1 specific category ===== \\
+categoryController.getOneCategory = async (req,res) => {
     try {      
         const category = await models.category.findOne({
             where:{
@@ -51,8 +50,8 @@ categoryController.getOneCategory = async (req,res)=>{
     }
 }
 
-// CREATE THE ASSOCIATIONS BETWEEN THE CATEGORY AND THE RECIPES:
-categoryController.recipeInCategory = async (req,res)=>{
+// ===== CREATE THE ASSOCIATIONS BETWEEN THE CATEGORY AND THE RECIPES ===== \\
+categoryController.recipeInCategory = async (req,res) => {
     
     try {     
         const category = await models.category.findOne({
@@ -73,8 +72,8 @@ categoryController.recipeInCategory = async (req,res)=>{
     }
 }
 
-// GET ALL THE RECIPES ASSOCIATED TO A SPECIFIC CATEGORY:
-categoryController.allRecipeInCategory = async (req,res)=>{
+// ===== GET ALL THE RECIPES ASSOCIATED TO A SPECIFIC CATEGORY ===== \\
+categoryController.allRecipeInCategory = async (req,res) => {
     try {
         const category = await models.category.findOne({
             where:{
@@ -90,8 +89,8 @@ categoryController.allRecipeInCategory = async (req,res)=>{
     }
 }
 
-// REMOVE A RECIPE FROM A CATEGORY:
-categoryController.removeRecipeInCategory = async (req,res)=>{
+// ===== REMOVE A RECIPE FROM A CATEGORY ===== \\
+categoryController.removeRecipeInCategory = async (req,res) => {
     try {
         const category = await models.category.findOne({
             where:{
@@ -111,8 +110,7 @@ categoryController.removeRecipeInCategory = async (req,res)=>{
     }
 }
 
-
-// COMPLETELY REMOVE A CATEGORY AND THE ASSOCIATIONS FOR THAT SPECIFIC CATEGORY IN THE JOIN TABLE :
+// ===== COMPLETELY REMOVE A CATEGORY AND THE ASSOCIATIONS FOR THAT SPECIFIC CATEGORY IN THE JOIN TABLE ===== \\
 categoryController.removeCategory = async (req,res) => {
     try {
         const category = await models.category.findOne({

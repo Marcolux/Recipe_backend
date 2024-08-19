@@ -1,7 +1,5 @@
-const { errorMonitor } = require('pg/lib/query')
 const models = require('../models')
 const userController = {}
-
 
 // ===== Create a user from body in frontend ===== \\
 userController.createUser = async (req, res) => {

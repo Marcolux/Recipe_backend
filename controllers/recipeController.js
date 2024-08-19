@@ -1,7 +1,7 @@
 const models = require('../models')
 const recipeController = {}
 
-//Creating a recipe from the info (req.body) passed by the frontend:
+// ===== Creating a recipe from the info (req.body) passed by the frontend ===== \\
 recipeController.createRecipeToUser = async (req, res) => {
     try {
         const user = await models.user.findOne({
@@ -24,8 +24,8 @@ recipeController.createRecipeToUser = async (req, res) => {
     }
 }
 
-// GET ALL THE RECIPES 
-recipeController.getAllRecipes = async (req,res)=>{
+// ===== GET ALL THE RECIPES ===== \\
+recipeController.getAllRecipes = async (req,res) => {
     try {
         const user = await models.user.findOne({
             where:{
@@ -40,8 +40,8 @@ recipeController.getAllRecipes = async (req,res)=>{
     }
 }
 
-// GET 1 RECIPE FROM PARAM ID :
-recipeController.getOneRecipe = async (req,res)=>{
+// ===== GET 1 RECIPE FROM PARAM ID ===== \\
+recipeController.getOneRecipe = async (req,res) => {
     try {
         const recipe = await models.recipe.findOne({
             where:{
@@ -55,8 +55,8 @@ recipeController.getOneRecipe = async (req,res)=>{
     }
 }
 
-// MODIFY ONE RECIPE AFTER IDENTIFING IT:
-recipeController.modifyRecipe = async(req,res)=>{
+// ===== MODIFY ONE RECIPE AFTER IDENTIFING IT ===== \\
+recipeController.modifyRecipe = async(req,res) => {
     try {
         const recipe = await models.recipe.findOne({
             where:{
@@ -76,8 +76,8 @@ recipeController.modifyRecipe = async(req,res)=>{
     }
 }
 
-// DELETE A RECIPE :
-recipeController.deleteRecipe = async(req,res)=>{
+// ===== DELETE A RECIPE ===== \\
+recipeController.deleteRecipe = async(req,res) => {
     try {
         const recipe = await models.recipe.findOne({
             where:{
@@ -86,7 +86,7 @@ recipeController.deleteRecipe = async(req,res)=>{
         })
         await recipe.destroy() 
         res.json(recipe)
-        
+
     } catch(err) {
         res.json(err)
     } 
