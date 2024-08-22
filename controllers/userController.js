@@ -1,6 +1,23 @@
 const models = require('../models')
 const userController = {}
 
+// ===== Check if Email is already taken ===== \\
+userController.checkEmail = async (req, res) => {
+    try {
+        const user = await models.user.findOne({
+            where: { email: req.body.email }
+        })
+
+        if (user) {
+            return res.status(200).json({ exists: true, message: "Email address already in use!" })
+        } else {
+            return res.status(200).json({ exists: false, message: "Email is available." })
+        }
+
+    } catch (err) {
+        res.status(500).json({ error: 'Internal Server Error', details: err });        
+    }
+}
 // ===== Create a user from body in frontend ===== \\
 userController.createUser = async (req, res) => {
     try {
@@ -11,9 +28,7 @@ userController.createUser = async (req, res) => {
         })
         res.json({newUser})
     } catch (err) {
-        console.error("Error creating user:", err);
-        res.status(500).json({ error: 'Internal Server Error', details: err });
-        
+        console.error("Error creating user:", err)       
     }
 }
 
